@@ -29,11 +29,9 @@ def Speech2Text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', 
 		if debug:
 			print(response_speech.json())
 		response_speech = response_speech.json()
-		try:
-			text = response_speech['results'][0]['name']
-			confidence = response_speech['results'][0]['confidence']
-		finally:
-			return (text, confidence)
+		text = response_speech['results'][0]['name']
+		confidence = response_speech['results'][0]['confidence']
+		return (text, confidence)
 	else:
 		print(response_speech.headers)
 		print(response_speech.text)

@@ -22,14 +22,16 @@ def handle_request(filename):
 		text, confidence = Speech2Text(filename)
 		print((text, confidence))
 		callAPI(text)
+	except Exception as e:
+		print(e)
 	finally:
 		print('Finish.')
 
-NUM_SAMPLES = 2000  # pyAudio内部缓存的块的大小
-SAMPLING_RATE = 16000  # 取样频率
-LEVEL = 4000  # 声音保存的阈值
-COUNT_NUM = 50  # NUM_SAMPLES个取样之内出现COUNT_NUM个大于LEVEL的取样则记录声音
-SAVE_LENGTH = 8  # 声音记录的最小长度：SAVE_LENGTH * NUM_SAMPLES 个取样
+NUM_SAMPLES = 8000
+SAMPLING_RATE = 16000
+LEVEL = 3000
+COUNT_NUM = 180
+SAVE_LENGTH = 2
 
 
 
@@ -58,7 +60,7 @@ while True:
         save_buffer.append(string_audio_data)
     else:
         if len(save_buffer) > 0:
-            filename = datetime.now().strftime("%Y-%m-%d_%H_%M_%S") + ".wav"
+            filename = "a.wav"
             save_wave_file(filename, save_buffer)
             save_buffer = []
             print(filename, "saved")
