@@ -39,6 +39,7 @@ def main(host, port):
             server.close()
             sys.exit(0)
 
+
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print('Use default argument\n\tHost: 127.0.0.1\n\tPort: 7777')
