@@ -7,16 +7,17 @@ import sys
 
 
 def connect(host, port):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((host, port))
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((host, port))
     print("socket connected!!!")
-    msg = s.recv(1024)
-    print("Message from server : " + str(msg))
+    text = input('Input the message to send: ')
+    sock.send(text.encode('utf-8'))
+    sock.close()
 
 
 def main():
     host = "127.0.0.1"
-    port = 7779
+    port = 7777
     connect(host, port)
 
 
