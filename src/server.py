@@ -31,9 +31,7 @@ class Server(socket.socket):
         print('Socket closed.')
 
 
-def main():
-    host = "127.0.0.1"
-    port = 7777
+def main(host, port):
     server = Server(host, port)
     while True:
         try:
@@ -43,5 +41,12 @@ def main():
             sys.exit(0)
 
 if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        print('Use default argument\n\tHost: 127.0.0.1\n\tPort: 7777')
+        host = '127.0.0.1'
+        port = 7777
+    else:
+        host = sys.argv[1]
+        port = int(sys.argv[2])
     RECV_BUFFER = 4096
-    sys.exit(int(main() or 0))
+    sys.exit(int(main(host, port) or 0))
