@@ -23,6 +23,9 @@ try:
                         elif wave == 'pulse':
                             pulse_list.append(int(length))
 
+                    if len(space_list) == 36 and len(pulse_list) == 36:
+                        pass
+
 except KeyboardInterrupt:
-    print('space' + str(len(space_list)))
-    print('pulse' + str(len(pulse_list)))
+    print('Exist Now....')
+    sys.exit(0)
