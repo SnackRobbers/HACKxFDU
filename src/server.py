@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # encoding:utf-8
 __author__ = 'irmo'
 
@@ -41,12 +40,12 @@ def main(host, port):
             sys.exit(0)
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 4:
         print('Use default argument\n\tHost: 127.0.0.1\n\tPort: 7777')
         host = '127.0.0.1'
         port = 7777
     else:
-        host = sys.argv[1]
-        port = int(sys.argv[2])
+        host = sys.argv[2]
+        port = int(sys.argv[3])
     RECV_BUFFER = 4096
     sys.exit(int(main(host, port) or 0))
