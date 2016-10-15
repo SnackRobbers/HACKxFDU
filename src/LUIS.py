@@ -10,7 +10,6 @@ def callAPI(text):
     r = requests.get(request_url)
     if r.status_code != 200:
         raise ConnectionError
-    # print(r.json())
     getFunc(r.json())
 
 
