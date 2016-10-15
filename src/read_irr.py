@@ -15,11 +15,13 @@ try:
             if output:
                 sys.stdout.write(output)
                 # sys.stdout.write('indicator: ' + output)
-                (wave, length) = output.split()
-                if wave == 'space':
-                    space_list.append(int(length))
-                elif wave == 'pulse':
-                    pulse_list.append(int(length))
+                o = output.split()
+                if len(o) == 4:
+                    for wave, length in zip(o[::2], o[1::2]):
+                        if wave == 'space':
+                            space_list.append(int(length))
+                        elif wave == 'pulse':
+                            pulse_list.append(int(length))
 
 except KeyboardInterrupt:
     print('space' + str(len(space_list)))
