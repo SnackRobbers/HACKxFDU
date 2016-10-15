@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 import wave
 from Speech2Text import Speech2Text
-from LUIS import callAPI
+import LUIS
 
 
 def save_wave_file(filename, data):
@@ -17,15 +17,18 @@ def save_wave_file(filename, data):
     wf.writeframes(s)
     wf.close()
 
+
 def handle_request(filename):
-	try:
-		text, confidence = Speech2Text(filename)
-		print((text, confidence))
-		callAPI(text)
-	except Exception as e:
-		print(e)
-	finally:
-		print('Finish.')
+    try:
+        text, confidence = Speech2Text(filename)
+        print((text, confidence))
+        func_name = LUIS.callAPI(text)
+        print('Detect function: ', func_name)
+    except Exception as e:
+        print(e)
+    finally:
+        print('Finish.')
+
 
 NUM_SAMPLES = 8000
 SAMPLING_RATE = 16000
@@ -33,15 +36,13 @@ LEVEL = 3000
 COUNT_NUM = 180
 SAVE_LENGTH = 2
 
-
-
 save_count = 0
 save_buffer = []
 
 while True:
     pa = PyAudio()
     stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True,
-                 frames_per_buffer=NUM_SAMPLES)
+                     frames_per_buffer=NUM_SAMPLES)
     string_audio_data = stream.read(NUM_SAMPLES)
     audio_data = np.fromstring(string_audio_data, dtype=np.short)
     large_sample_count = np.sum(audio_data > LEVEL)
