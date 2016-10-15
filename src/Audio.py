@@ -12,9 +12,9 @@ def save_wave_file(filename, data):
     wf.setnchannels(1)
     wf.setsampwidth(2)
     wf.setframerate(SAMPLING_RATE)
-    s = "".join(str(data))
+    s = b"".join(data)
     print(type(s))
-    wf.writeframes(s.encode('utf-8'))
+    wf.writeframes(s)
     wf.close()
 
 def handle_request(filename):
