@@ -1,7 +1,7 @@
 import requests
 import uuid
 
-def speech2text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', locale='zh-CN', device_os='your_device_os'):
+def Speech2Text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', locale='zh-CN', device_os='your_device_os'):
 	debug = False
 	url_token = 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken'
 	headers_token = {
@@ -35,4 +35,4 @@ def speech2text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', 
 	return None
 
 if __name__ == '__main__':
-	print(speech2text('../../../Desktop/a.wav'))
+	print(Speech2Text('../../../Desktop/a.wav'))
