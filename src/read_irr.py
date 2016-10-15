@@ -13,6 +13,7 @@ try:
             output = os.read(stdout.fileno(), 1024).decode('utf-8')
 
             if output:
+                sys.stdout.write(output)
                 # sys.stdout.write('indicator: ' + output)
                 (wave, length) = output.split()
                 if wave == 'space':
