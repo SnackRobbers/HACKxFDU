@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import sys
 
@@ -9,7 +10,15 @@ def callAPI(text):
     r = requests.get(request_url)
     if r.status_code != 200:
         raise ConnectionError
-    print(r.json())
+    # print(r.json())
+    getFunc(r.json())
+
+
+def getFunc(j):
+    priority_func = j['intents'][0]
+    func = priority_func['intent']
+    score = priority_func['score']
+    print(func, '(', score, ')')
 
 
 def main():
