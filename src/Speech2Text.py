@@ -2,7 +2,7 @@ import requests
 import uuid
 
 def Speech2Text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', locale='zh-CN', device_os='your_device_os'):
-	debug = False
+	debug = True
 	url_token = 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken'
 	headers_token = {
 		'Content-type' : 'application/x-www-form-urlencoded',
@@ -26,8 +26,11 @@ def Speech2Text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', 
 	data = inf.read()
 	response_speech = requests.post(url_speech, headers=headers_speech, data=data)
 	if response_speech.status_code == 200:
+		if debug:
+			print(response_speech.json())
 		text = response_speech.json()['results'][0]['name']
-		return text
+		confidence = response_speech.json()['results'][0]['confidence']
+		return (text, confidence)
 	else:
 		print(response_speech.headers)
 		print(response_speech.text)

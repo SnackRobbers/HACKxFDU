@@ -3,6 +3,8 @@ from pyaudio import PyAudio, paInt16
 import numpy as np
 from datetime import datetime
 import wave
+from Speech2Text import Speech2Text
+from LUIS import callAPI
 
 
 def save_wave_file(filename, data):
@@ -15,6 +17,11 @@ def save_wave_file(filename, data):
     wf.writeframes(s.encode('utf-8'))
     wf.close()
 
+def handle_request(filename):
+	text, confidence = Speech2Text(filename)
+	print((text, confidence))
+	callAPI(text)
+	print('Finish.')
 
 NUM_SAMPLES = 2000  # pyAudio内部缓存的块的大小
 SAMPLING_RATE = 16000  # 取样频率
@@ -52,3 +59,4 @@ while True:
             save_wave_file(filename, save_buffer)
             save_buffer = []
             print(filename, "saved")
+            handle_request(filename)
