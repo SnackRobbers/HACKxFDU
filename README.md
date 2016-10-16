@@ -2,6 +2,8 @@
 
 本仓库是[HACKxFDU](http://hackx.org/)的项目源代码仓库。
 
+[最终项目演示视频](https://youtu.be/7C0NfFHb5Rw)
+
 ## 项目背景
 
 在城市的交通高峰期，交通常常出现程度不等的拥塞状况，需要交警进行人工调控。
@@ -39,10 +41,10 @@
 ## 相关技术
 
 - 流语音处理
-- 语音识别(Bing API)
-- 语义理解(LUIS)
-- 树莓派
-- Ruff
+- [语音识别(Bing API)](https://www.microsoft.com/cognitive-services/en-us/speech-api)
+- [语义理解(LUIS)](https://www.microsoft.com/cognitive-services/en-us/language-understanding-intelligent-service-luis)
+- [树莓派](https://www.raspberrypi.org/)
+- [Ruff](https://ruff.io/zh-cn/)
 - 采用了三色LED灯(模拟交通信号灯)，红外发送和接受模块
 - 测试了光源传感器，蜂鸣器等其它辅助模块
 - 采用Socket进行主机和树莓派之间的通信
