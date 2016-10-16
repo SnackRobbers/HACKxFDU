@@ -25,8 +25,9 @@ def handle_request(filename):
         print((text, confidence))
         func_name = LUIS.callAPI(text)
         print('Detect function: ', func_name)
-        if func_name != 'None':
-            os.system('python client.py 127.0.0.1 7777 ' + func_name)
+        funcs = ['setLightOn', 'setLightOff', 'setRedLight', 'setGreenLight', 'setYellowLight']
+        if func_name in funcs:
+            os.system('python client.py 10.221.65.234 8888 ' + func_name)
 
     except Exception as e:
         print(e)
@@ -36,7 +37,7 @@ def handle_request(filename):
 
 NUM_SAMPLES = 8000
 SAMPLING_RATE = 16000
-LEVEL = 3000
+LEVEL = 8000
 COUNT_NUM = 180
 SAVE_LENGTH = 2
 

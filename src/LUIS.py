@@ -16,9 +16,10 @@ def getFunc(j):
     priority_func = j['intents'][0]
     func = priority_func['intent']
     score = priority_func['score']
-    if score < 0.3:
+    if score < 0.2:
         print('Score is low.')
-    return str(func)
+    else:
+        return str(func)
 
 
 def main():
