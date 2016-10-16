@@ -5,6 +5,7 @@ from datetime import datetime
 import wave
 from Speech2Text import Speech2Text
 import LUIS
+import os
 
 
 def save_wave_file(filename, data):
@@ -24,6 +25,9 @@ def handle_request(filename):
         print((text, confidence))
         func_name = LUIS.callAPI(text)
         print('Detect function: ', func_name)
+        if func_name != 'None':
+            os.system('python client.py 127.0.0.1 7777 ' + func_name)
+
     except Exception as e:
         print(e)
     finally:

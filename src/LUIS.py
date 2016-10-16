@@ -4,8 +4,7 @@ import sys
 
 
 def callAPI(text):
-    url = 'https://api.projectoxford.ai/luis/v1/application' + \
-          '?id=bd9d9b8f-ac87-4bc9-94de-f3aeb734ead6&subscription-key=86ef114a9ce94ca9a56bda305d09b1b4'
+    url = 'https://api.projectoxford.ai/luis/v1/application?id=a481ff0e-5d45-4921-b795-baf228922911&subscription-key=86ef114a9ce94ca9a56bda305d09b1b4'
     request_url = url + '&q=' + text
     r = requests.get(request_url)
     if r.status_code != 200:
