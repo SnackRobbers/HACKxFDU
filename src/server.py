@@ -3,11 +3,15 @@ __author__ = 'irmo'
 
 import socket
 import sys
+from led import TrafficLight
+from led_config import config_led
 
 
 class Server(socket.socket):
     def __init__(self, host, port):
         super(Server, self).__init__()
+        config = config_led()
+        self.traffic_lightss = TrafficLight(*config)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print('Socket created.')
         try:
@@ -23,11 +27,26 @@ class Server(socket.socket):
     def receive(self):
         conn, addr = self.sock.accept()
         data = conn.recv(RECV_BUFFER)
-        print(data.decode('utf-8'))
+        func_name = data.decode('utf-8')
+        print(func_name)
+        self.deal(func_name)
 
     def close(self):
         self.sock.close()
         print('Socket closed.')
+
+
+    def deal(self, func_name):
+        if func_name == 'setLightOn':
+            self.traffic_lights.all_on()
+        elif func_name == 'setLightOff':
+            self.traffic_lights.all_off()
+        elif func_name == 'setRedLight':
+            self.traffic_lights.red_up()
+        elif func_name == 'setGreenLight':
+            self.traffic_lights.green_up()
+        elif func_name == 'setYellowLight':
+            self.traffic_lights.yellow()
 
 
 def main(host, port):
