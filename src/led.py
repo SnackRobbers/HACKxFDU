@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import time
 
 class TrafficLight:
     def __init__(self, r_pins, y_pins, g_pins):
@@ -35,8 +34,8 @@ class TrafficLight:
         self.r_pwm[1].ChangeDutyCycle(0)
         self.r_pwm[2].ChangeDutyCycle(0)
 
-        self.y_pwm[0].ChangeDutyCycle(100)
-        self.y_pwm[1].ChangeDutyCycle(100)
+        self.y_pwm[0].ChangeDutyCycle(60)
+        self.y_pwm[1].ChangeDutyCycle(60)
         self.y_pwm[2].ChangeDutyCycle(0)
 
         self.g_pwm[0].ChangeDutyCycle(0)
@@ -54,6 +53,32 @@ class TrafficLight:
 
         self.g_pwm[0].ChangeDutyCycle(0)
         self.g_pwm[1].ChangeDutyCycle(100)
+        self.g_pwm[2].ChangeDutyCycle(0)
+
+    def all_on(self):
+        self.r_pwm[0].ChangeDutyCycle(100)
+        self.r_pwm[1].ChangeDutyCycle(100)
+        self.r_pwm[2].ChangeDutyCycle(100)
+
+        self.y_pwm[0].ChangeDutyCycle(100)
+        self.y_pwm[1].ChangeDutyCycle(100)
+        self.y_pwm[2].ChangeDutyCycle(100)
+
+        self.g_pwm[0].ChangeDutyCycle(100)
+        self.g_pwm[1].ChangeDutyCycle(100)
+        self.g_pwm[2].ChangeDutyCycle(100)
+
+    def all_off(self):
+        self.r_pwm[0].ChangeDutyCycle(0)
+        self.r_pwm[1].ChangeDutyCycle(0)
+        self.r_pwm[2].ChangeDutyCycle(0)
+
+        self.y_pwm[0].ChangeDutyCycle(0)
+        self.y_pwm[1].ChangeDutyCycle(0)
+        self.y_pwm[2].ChangeDutyCycle(0)
+
+        self.g_pwm[0].ChangeDutyCycle(0)
+        self.g_pwm[1].ChangeDutyCycle(0)
         self.g_pwm[2].ChangeDutyCycle(0)
 
     def clean_up(self):
