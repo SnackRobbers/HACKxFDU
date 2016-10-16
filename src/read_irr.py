@@ -13,7 +13,7 @@ try:
             output = os.read(stdout.fileno(), 1024).decode('utf-8')
 
             if output:
-                sys.stdout.write(output)
+                # sys.stdout.write(output)
                 # sys.stdout.write('indicator: ' + output)
                 o = output.split()
                 if len(o) == 4:
