@@ -20,3 +20,4 @@ class RelayLED:
 
     def toggle(self):
         GPIO.output(self.pin, GPIO.LOW if self.status else GPIO.HIGH)
+        self.status = not self.status
