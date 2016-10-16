@@ -39,10 +39,10 @@ SAVE_LENGTH = 2
 save_count = 0
 save_buffer = []
 
+pa = PyAudio()
+stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=NUM_SAMPLES)
+
 while True:
-    pa = PyAudio()
-    stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True,
-                     frames_per_buffer=NUM_SAMPLES)
     string_audio_data = stream.read(NUM_SAMPLES)
     audio_data = np.fromstring(string_audio_data, dtype=np.short)
     large_sample_count = np.sum(audio_data > LEVEL)
@@ -66,4 +66,5 @@ while True:
             save_buffer = []
             print(filename, "saved")
             handle_request(filename)
-    stream.close()
+            stream.close()
+            stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=NUM_SAMPLES)
