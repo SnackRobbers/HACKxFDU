@@ -3,7 +3,7 @@ __author__ = 'irmo'
 
 import socket
 import sys
-import lightControl
+from led import TrafficLight as lightControl
 
 
 class Server(socket.socket):
@@ -35,15 +35,15 @@ class Server(socket.socket):
 
 def deal(func_name):
     if func_name == 'setLightOn':
-        lightControl.setLightOn()
+        lightControl.all_on()
     elif func_name == 'setLightOff':
-        lightControl.setLightOff()
+        lightControl.all_off()
     elif func_name == 'setRedLight':
-        lightControl.setRedLight()
+        lightControl.red_up()
     elif func_name == 'setGreenLight':
-        lightControl.setGreenLight()
+        lightControl.green_up()
     elif func_name == 'setYellowLight':
-        lightControl.setYellowLight()
+        lightControl.yellow()
 
 
 def main(host, port):
