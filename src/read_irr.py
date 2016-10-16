@@ -24,7 +24,7 @@ class IrrReader:
                         # sys.stdout.write(output)
                         # sys.stdout.write('indicator: ' + output)
                         o = output.split()
-                        if len(o) == 4:
+                        if len(o) % 2 == 0:
                             for wave, length in zip(o[::2], o[1::2]):
                                 if wave == 'space':
                                     space_list.append(int(length))
@@ -33,6 +33,8 @@ class IrrReader:
 
                             if len(space_list) == 36 and len(pulse_list) == 36:
                                 led.toggle()
+                                space_list = []
+                                pulse_list = []
 
         except KeyboardInterrupt:
             print('Exist Now....')
