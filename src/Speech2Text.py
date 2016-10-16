@@ -4,7 +4,7 @@ import uuid
 
 def Speech2Text(file_name, subscription_key='3c28aa450ca34f3e84403697b2c29ca1', locale='zh-CN',
                 device_os='your_device_os'):
-    debug = True
+    debug = False
     url_token = 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken'
     headers_token = {
         'Content-type': 'application/x-www-form-urlencoded',
