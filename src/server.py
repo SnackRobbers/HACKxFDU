@@ -11,7 +11,7 @@ class Server(socket.socket):
     def __init__(self, host, port):
         super(Server, self).__init__()
         config = config_led()
-        self.traffic_lightss = TrafficLight(*config)
+        self.traffic_lights = TrafficLight(*config)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print('Socket created.')
         try:
@@ -46,7 +46,7 @@ class Server(socket.socket):
         elif func_name == 'setGreenLight':
             self.traffic_lights.green_up()
         elif func_name == 'setYellowLight':
-            self.traffic_lights.yellow()
+            self.traffic_lights.yellow_up()
 
 
 def main(host, port):
