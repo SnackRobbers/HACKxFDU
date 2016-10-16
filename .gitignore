@@ -8,3 +8,4 @@ __pycache__/
 # For ruff
 driver/
 .rap/
+ruff_modules
