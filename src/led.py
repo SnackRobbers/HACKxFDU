@@ -3,7 +3,7 @@ import time
 
 class TrafficLight:
     def __init__(self, r_pins, y_pins, g_pins):
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
         for pins in [r_pins, y_pins, g_pins]:
             for p in pins:
                 GPIO.setup(p, GPIO.OUT)
