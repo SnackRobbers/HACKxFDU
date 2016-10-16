@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 
+
 class RelayLED:
     def __init__(self, pin=7):
         GPIO.setmode(GPIO.BOARD)
