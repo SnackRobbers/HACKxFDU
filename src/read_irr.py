@@ -6,7 +6,7 @@ class IrrReader:
     def __init__(self):
         pass
 
-    def read_irr():
+    def read_irr(self):
         args = ['mode2', '-d', '/dev/lirc0']
         p1 = subprocess.Popen(args, stdout=subprocess.PIPE)
         p2 = subprocess.Popen(args, stdout=subprocess.PIPE)
