@@ -32,3 +32,6 @@ def read_irr():
     except KeyboardInterrupt:
         print('Exist Now....')
         sys.exit(0)
+
+if __name__ == '__main__':
+    read_irr()
