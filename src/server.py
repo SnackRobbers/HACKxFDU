@@ -3,6 +3,7 @@ __author__ = 'irmo'
 
 import socket
 import sys
+from led import TrafficLight as lightControl
 
 
 class Server(socket.socket):
@@ -23,11 +24,26 @@ class Server(socket.socket):
     def receive(self):
         conn, addr = self.sock.accept()
         data = conn.recv(RECV_BUFFER)
-        print(data.decode('utf-8'))
+        func_name = data.decode('utf-8')
+        print(func_name)
+        deal(func_name)
 
     def close(self):
         self.sock.close()
         print('Socket closed.')
+
+
+def deal(func_name):
+    if func_name == 'setLightOn':
+        lightControl.all_on()
+    elif func_name == 'setLightOff':
+        lightControl.all_off()
+    elif func_name == 'setRedLight':
+        lightControl.red_up()
+    elif func_name == 'setGreenLight':
+        lightControl.green_up()
+    elif func_name == 'setYellowLight':
+        lightControl.yellow()
 
 
 def main(host, port):
@@ -38,6 +54,7 @@ def main(host, port):
         except KeyboardInterrupt:
             server.close()
             sys.exit(0)
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

@@ -1,4 +1,10 @@
 .idea/
 *.wav
+
+# For python
 *.pyc
 __pycache__/
+
+# For ruff
+driver/
+.rap/
