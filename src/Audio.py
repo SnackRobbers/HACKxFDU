@@ -56,15 +56,13 @@ while True:
 
     if save_count < 0:
         save_count = 0
-
-    if save_count > 0:
-        save_buffer.append(string_audio_data)
-    else:
-        if len(save_buffer) > 0:
-            filename = "a.wav"
-            save_wave_file(filename, save_buffer)
-            save_buffer = []
-            print(filename, "saved")
-            handle_request(filename)
-            stream.close()
-            stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=NUM_SAMPLES)
+        save_buffer = []
+    save_buffer.append(string_audio_data)
+    if save_count == 0 and len(save_buffer) > SAVE_LENGTH:
+        filename = "a.wav"
+        save_wave_file(filename, save_buffer)
+        save_buffer = []
+        print(filename, "saved")
+        handle_request(filename)
+        stream.close()
+        stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=NUM_SAMPLES)
